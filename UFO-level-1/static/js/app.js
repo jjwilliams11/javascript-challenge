@@ -70,20 +70,6 @@ var tableData = data;
 // console.log(searchdate)
 
 
-// function search(data){
-//     if ("1/1/2010" === data.datetime){
-//         if ("benton" === data.city){
-//             if ("ar" === data.state){
-//                 if ("us" === data.country){
-//                     if ("circle" === data.shape){
-//                         return data;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
 function search(data){
 //     if ("1/2/2010" === data.datetime){}
 //     let date = true
@@ -103,12 +89,11 @@ function search(data){
 // function shapesearch(data){
 //     if ("circle" === data.shape){}
 
-    if ("1/1/2010" === data.datetime && "benton" === data.city &&
-    "ar" === data.state && "us" === data.country && "circle" === data.shape){
-        return data
+    if ("1/1/2010" === data.datetime){
+        return data;
     }
 
-}
+};
 
 let searchresults = tableData.filter(search);
 
