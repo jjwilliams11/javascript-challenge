@@ -32,18 +32,13 @@ function runFilter(){
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
-    // Select the Date Element
+    // Select the Search Values
     // let dateElement = d3.select("#datetime-input");
     let dateValue = d3.select("#datetime-input").property("value");
     let cityValue = d3.select("#city-input").property("value");
     let stateValue = d3.select("#state-input").property("value");
     let countryValue = d3.select("#country-input").property("value");
     let shapeValue = d3.select("#shape-input").property("value");
-
-    console.log()
-
-    // Select the Date Value Entered
-    // let dateValue = dateElement.property("value");
 
     // Filter table by Date Value
     // let dateSearch = tableData.filter(tableData => tableData.datetime === dateValue);
