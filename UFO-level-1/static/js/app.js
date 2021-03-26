@@ -1,7 +1,60 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
+
+// Select table body
+let table = d3.select("tbody");
+
+//Read in tableData
+tableData.forEach((sighting) => {
+    var row = table.append("tr");
+    Object.entries(sighting).forEach(([key, value]) => {
+      var cell = row.append("td");
+      cell.text(value);
+    });
+  });
+
+// Select the button
+let button = d3.select("#filter-button");
+
+// Select the form
+let form = d3.select("#search-form");
+
+
+// Create event handlers 
+button.on("click", runFilter);
+form.on("submit",runFilter);
+
+// Form Filter Function
+function runFilter(){
+
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
+    // Select the Date Element
+    let dateElement = d3.select("#datetime-input");
+
+    console.log(dateElement.property("value"))
+
+    // Select the Date Value Entered
+    let dateValue = dateElement.property("value");
+
+    // // Filter table by Date Value
+    let dateSearch = tableData.filter(tableData => tableData.datetime === dateValue);
+
+    console.log(dateSearch);
+
+    table.html("")
+
+    dateSearch.forEach((results) => {
+        row = table.append("tr");
+        Object.entries(results).forEach(([key,value]) => {
+            cell = row.append("td");
+            cell.text(value);
+        });
+    });
+
+}
 
 // let dates = tableData.map(date => date.datetime);
 
@@ -16,6 +69,7 @@ var tableData = data;
 // let durations = tableData.map(duration => duration.durationMinutes)
 
 // let comments = tableData.map(comment => comment.comments);
+// console.log(dates);
 
 // console.log(dates, cities, states, countries, shapes, durations, comments);
 // console.log(cities);
@@ -24,6 +78,16 @@ var tableData = data;
 // console.log(shapes);
 // console.log(durations);
 // console.log(comments);
+
+// dates = tableData.forEach(function(item){
+//     console.log(item["datetime"]);
+// });
+
+// let table = d3.select("#tbody");
+
+// dates.forEach((rec => {
+//     table.append("tr").append("td")
+// }))
 
 // tableData.forEach((data)=>{
 //     Object.entries(data).forEach(([key,value])=>{
@@ -56,7 +120,16 @@ var tableData = data;
 //             console.log(comments);
 //         }
         
-//     });
+//     })
+// });
+
+
+
+// dates.forEach((rec => {
+//     table.append("tr").append("td")
+// }));
+
+
 
 // });
 
@@ -70,7 +143,7 @@ var tableData = data;
 // console.log(searchdate)
 
 
-function search(data){
+// function search(data){
 //     if ("1/2/2010" === data.datetime){}
 //     let date = true
 // }
@@ -89,12 +162,12 @@ function search(data){
 // function shapesearch(data){
 //     if ("circle" === data.shape){}
 
-    if ("1/1/2010" === data.datetime){
-        return data;
-    }
+//     if ("1/1/2010" === data.datetime){
+//         return data;
+//     }
 
-};
+// };
 
-let searchresults = tableData.filter(search);
+// let searchresults = tableData.filter(search);
 
-console.log(searchresults)
+// console.log(searchresults)

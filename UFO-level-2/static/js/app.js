@@ -3,6 +3,8 @@ var tableData = data;
 
 // YOUR CODE HERE!
 
+tableData
+
 
 function search(data){
     //     if ("1/2/2010" === data.datetime){}
