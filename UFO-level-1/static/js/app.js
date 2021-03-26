@@ -5,14 +5,15 @@ var tableData = data;
 // Select table body
 let table = d3.select("tbody");
 
-//Read in tableData
-tableData.forEach((sighting) => {
-    var row = table.append("tr");
-    Object.entries(sighting).forEach(([key, value]) => {
-      var cell = row.append("td");
-      cell.text(value);
+//Create function to read in tableData
+function fullTable(data){
+    tableData.forEach((sighting) => {
+        let row = table.append("tr");
+        Object.entries(sighting).forEach(([key, value]) => {
+        let cell = row.append("td").text(value);
+        });
     });
-  });
+}
 
 // Select the buttons
 let filterButton = d3.select("#filter-button");
@@ -54,8 +55,7 @@ function runFilter(){
     dateSearch.forEach((results) => {
         row = table.append("tr");
         Object.entries(results).forEach(([key,value]) => {
-            cell = row.append("td");
-            cell.text(value);
+        cell = row.append("td").text(value);
         });
     
     });
@@ -73,19 +73,11 @@ function runClear(){
     
 
     // Input the filter data into table format
-    tableData.forEach((sighting) => {
-        var row = table.append("tr");
-        Object.entries(sighting).forEach(([key, value]) => {
-          var cell = row.append("td");
-          cell.text(value);
-        });
-      });
+    fullTable(tableData)
 
-    // Clear input text
-    
 }
 
-
+fullTable(tableData);
 
 // let dates = tableData.map(date => date.datetime);
 
