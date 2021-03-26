@@ -14,15 +14,17 @@ tableData.forEach((sighting) => {
     });
   });
 
-// Select the button
-let button = d3.select("#filter-button");
+// Select the buttons
+let filterButton = d3.select("#filter-button");
+let clearButton = d3.select("#clear-button")
 
 // Select the form
 let form = d3.select("#search-form");
 
 
 // Create event handlers 
-button.on("click", runFilter);
+filterButton.on("click", runFilter);
+clearButton.on("click", runClear)
 form.on("submit",runFilter);
 
 // Form Filter Function
@@ -39,22 +41,51 @@ function runFilter(){
     // Select the Date Value Entered
     let dateValue = dateElement.property("value");
 
-    // // Filter table by Date Value
+    // Filter table by Date Value
     let dateSearch = tableData.filter(tableData => tableData.datetime === dateValue);
 
+    // Show filter results in console
     console.log(dateSearch);
 
+    // Clear table before input results
     table.html("")
 
+    // Input the filter data into table format
     dateSearch.forEach((results) => {
         row = table.append("tr");
         Object.entries(results).forEach(([key,value]) => {
             cell = row.append("td");
             cell.text(value);
         });
+    
     });
 
 }
+
+// Clear Filter Function
+function runClear(){
+
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
+    // Clear table before input results
+    table.html("")
+    
+
+    // Input the filter data into table format
+    tableData.forEach((sighting) => {
+        var row = table.append("tr");
+        Object.entries(sighting).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+        });
+      });
+
+    // Clear input text
+    
+}
+
+
 
 // let dates = tableData.map(date => date.datetime);
 
