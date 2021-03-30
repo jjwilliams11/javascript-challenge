@@ -35,32 +35,70 @@ function runFilter(){
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
-    let filterData = tableData
-
     // Select the Search Values
     // let dateElement = d3.select("#datetime-input");
-
-    let dateValue = d3.select("#datetime-input").property("value");
-    let cityValue = d3.select("#city-input").property("value");
-    let stateValue = d3.select("#state-input").property("value");
-    let countryValue = d3.select("#country-input").property("value");
-    let shapeValue = d3.select("#shape-input").property("value");
+    // if (d3.select("#datetime-input").property("value") !== null){
+    //     dateValue = d3.select("#datetime-input").property("value")
+    // }
+    if (d3.select("#city-input").property("value") !== null){
+        cityValue = d3.select("#city-input").property("value")
+    }
 
     
-    // Filter table by Date Value
-    let searchResults = filterData.filter((data) => tableData.datetime === dateValue ||
-        tableData.city === cityValue || tableData.state === stateValue || tableData.country === countryValue ||
-        tableData.shape === shapeValue)
+    let dateValue = d3.select("#datetime-input").property("value");
+    // let cityValue = d3.select("#city-input").property("value");
+    // let stateValue = d3.select("#state-input").property("value");
+    // let countryValue = d3.select("#country-input").property("value");
+    // let shapeValue = d3.select("#shape-input").property("value");
 
-    console.log(searchResults)
-    //     });
+   let dateSearch = tableData.filter(data => {
+       if(dateValue !== null){
+           data.datetime === dateValue
+       }
+       else{
+           data.datetime === data.datetime
+       }
+
+   });
+   let citySearch = dateSearch.filter(data => data.city === cityValue);
+//    let stateSearch = 
+
+    //    if(cityValue !== null){
+    //        return data.city === cityValue;
+    //    }
+    // console.log(searchData);
+    // console.log(cityValue);
+    // searchData = filterData.filter(tableData.datetime === dateValue)
+
+    // let searchData = tableData.filter(tableData => tableData.datetime === dateValue);
+        
+        // && tableData.city === cityValue &&
+        // tableData.state === stateValue && tableData.country === countryValue && tableData.shape === shapeValue)
+            
+    // Clear table before input results
+    // table.html("")
+    
+    // // Filter table by Date Value
+    // // let searchResults = filterData.filter((data) => tableData.datetime === dateValue ||
+    // //     tableData.city === cityValue || tableData.state === stateValue || tableData.country === countryValue ||
+    // //     tableData.shape === shapeValue)
+
+    citySearch.forEach((results) => {
+        row = table.append("tr");
+        Object.entries(results).forEach(([key,value]) => {
+        cell = row.append("td").text(value);
+        });
+    });
+        
     // tableData.filter((data) => {
 
     // }
+    // console.log(dateValue)
+    // console.log(cityValue)
+    console.log(dateSearch)
+
+
 }
-
-
-
 
 
 //     )
@@ -110,9 +148,9 @@ function runClear(){
 
 
 fullTable(tableData);
-// function search(data){
+
+function search(data){
     //     if ("1/2/2010" === data.datetime){}
-    //     let date = true
     // }
     
     // function citysearch(data){
@@ -129,13 +167,12 @@ fullTable(tableData);
     // function shapesearch(data){
     //     if ("circle" === data.shape){}
     
-    //     if ("1/1/2010" === data.datetime && "benton" === data.city &&
-    //     "ar" === data.state && "us" === data.country && "circle" === data.shape){
-    //         return data;
-    //     }
+        if (data.shape ==="circle"){
+            return data;
+        }
     
-    // };
+    };
     
-    // let searchresults = tableData.filter(search);
+let searchresults = tableData.filter(search);
     
-    // console.log(searchresults)
+console.log(searchresults)
