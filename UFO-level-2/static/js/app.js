@@ -40,27 +40,27 @@ function runFilter(){
     // if (d3.select("#datetime-input").property("value") !== null){
     //     dateValue = d3.select("#datetime-input").property("value")
     // }
-    if (d3.select("#city-input").property("value") !== null){
-        cityValue = d3.select("#city-input").property("value")
-    }
+    // if (d3.select("#city-input").property("value") !== null){
+    //     cityValue = d3.select("#city-input").property("value")
+    // }
 
     
     let dateValue = d3.select("#datetime-input").property("value");
-    // let cityValue = d3.select("#city-input").property("value");
-    // let stateValue = d3.select("#state-input").property("value");
-    // let countryValue = d3.select("#country-input").property("value");
-    // let shapeValue = d3.select("#shape-input").property("value");
+    let cityValue = d3.select("#city-input").property("value");
+    let stateValue = d3.select("#state-input").property("value");
+    let countryValue = d3.select("#country-input").property("value");
+    let shapeValue = d3.select("#shape-input").property("value");
 
-   let dateSearch = tableData.filter(data => {
-       if(dateValue !== null){
-           data.datetime === dateValue
-       }
-       else{
-           data.datetime === data.datetime
-       }
+//    let dateSearch = tableData.filter(data => {
+//        if(dateValue !== null){
+//            data.datetime === dateValue
+//        }
+//        else{
+//            data.datetime === data.datetime
+//        }
 
-   });
-   let citySearch = dateSearch.filter(data => data.city === cityValue);
+//    });
+//    let citySearch = dateSearch.filter(data => data.city === cityValue);
 //    let stateSearch = 
 
     //    if(cityValue !== null){
@@ -75,27 +75,38 @@ function runFilter(){
         // && tableData.city === cityValue &&
         // tableData.state === stateValue && tableData.country === countryValue && tableData.shape === shapeValue)
             
-    // Clear table before input results
-    // table.html("")
     
-    // // Filter table by Date Value
-    // // let searchResults = filterData.filter((data) => tableData.datetime === dateValue ||
-    // //     tableData.city === cityValue || tableData.state === stateValue || tableData.country === countryValue ||
-    // //     tableData.shape === shapeValue)
+    
+    // Filter table by Date Value
+    let searchResults = tableData.filter((data) => {
+        if(dateValue !== null)
+            {data.datetime === dateValue}
+        else{} 
+        && 
+        if(cityValue !== null)
+            {data.city === cityValue}
+    });
+    // || data.state === stateValue || data.country === countryValue ||
+    // data.shape === shapeValue)
 
-    citySearch.forEach((results) => {
+
+    // Clear table before input results
+    table.html("")
+
+        
+    searchResults.forEach((results) => {
         row = table.append("tr");
         Object.entries(results).forEach(([key,value]) => {
         cell = row.append("td").text(value);
         });
+    
     });
-        
     // tableData.filter((data) => {
 
     // }
     // console.log(dateValue)
     // console.log(cityValue)
-    console.log(dateSearch)
+    console.log(searchResults)
 
 
 }
