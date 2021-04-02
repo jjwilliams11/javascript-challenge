@@ -43,7 +43,7 @@ function runFilter(){
     let dateValue = dateElement.property("value");
 
     // Filter table by Date Value
-    let dateSearch = tableData.filter(tableData => tableData.datetime === dateValue);
+    let dateSearch = tableData.filter(datum => datum.datetime === dateValue);
 
     // Show filter results in console
     console.log(dateSearch);
